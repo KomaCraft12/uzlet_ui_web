@@ -1,0 +1,22 @@
+<div class="text-center text-2xl mb-8">Add Category</div>
+
+<form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
+  <div>
+    <label for="name">Category Name:</label>
+    <input type="text" id="name" required [(ngModel)]="category.name" name="name" #name="ngModel">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+      Category name is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="categoryForm.form.invalid">Add Category</button>
+</form>
+
+<div *ngIf="categories.length > 0" class="category-list">
+  <div class="text-center text-xl">Existing Categories</div>
+  <ul>
+    <li *ngFor="let category of categories">
+      {{ category.name }}
+    </li>
+  </ul>
+</div>

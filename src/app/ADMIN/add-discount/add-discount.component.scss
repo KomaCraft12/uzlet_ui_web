@@ -1,0 +1,66 @@
+.product-details {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    max-width: 500px;
+    margin: 0 auto 20px auto; // Középre igazítás és alsó margó
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #cccccc;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.discount-list {
+    max-width: 500px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.discount-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.discount-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.discount-list li:last-child {
+    border-bottom: none;
+}

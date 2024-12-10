@@ -1,0 +1,31 @@
+<h2>Products</h2>
+<div *ngIf="products.length > 0; else noProducts">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Barcode</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.barcode }}</td>
+        <td>{{ product.price | number }} HUF</td>
+        <td>{{ product.category.name }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+          <button class="bg-green-600 px-4 py-2 rounded text-white" (click)="addStock(product)">Add Stock</button>
+          <button class="bg-blue-600 px-4 py-2 rounded text-white ml-2" (click)="printLabel(product)">Print Label</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noProducts>
+  <p>No products available.</p>
+</ng-template>

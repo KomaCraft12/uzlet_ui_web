@@ -1,0 +1,81 @@
+<div class="text-center text-2xl pb-4">Add Discount</div>
+
+<div *ngIf="product" class="product-details">
+  <div class="text-center text-xl mb-4">Product Details</div>
+  <p><strong>Name:</strong> {{ product.name }}</p>
+  <p><strong>Barcode:</strong> {{ product.barcode }}</p>
+  <p><strong>Price:</strong> {{ product.price | number }} HUF</p>
+  <p><strong>Category:</strong> {{ product.category.name }}</p>
+  <p><strong>Current Stock:</strong> {{ product.stock }}</p>
+  <p><strong>Akciós:</strong> {{ product.isdiscounted > 0 ? "Igen" : "Nem" }}</p>
+</div>
+
+<div *ngIf="barcode && !product" class="product-details">
+  <div class="text-center text-xl">No such product</div>
+</div>
+
+<form (ngSubmit)="onSubmit()" #discountForm="ngForm">
+  <div>
+    <label for="discount">Discount:</label>
+    <input type="number" id="discount" required [(ngModel)]="discount.discount_amount" name="discount_amount"
+      class="my-2" #discountAmount="ngModel">
+    <label for="discount">Start Date:</label>
+    <input type="date" id="start_date" required [(ngModel)]="discount.start_date" name="start_date" class="my-2"
+      #discountAmount="ngModel">
+    <label for="discount">End Date:</label>
+    <input type="date" id="end_date" required [(ngModel)]="discount.end_date" name="end_date" class="my-2"
+      #discountAmount="ngModel">
+    <div *ngIf="discountAmount.invalid && (discountAmount.dirty || discountAmount.touched)" class="error">
+      Discount is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="discountForm.form.invalid || product.isdiscounted > 0">Add Discount</button>
+</form>
+
+<div *ngIf="product && product.discounts && product.discounts.length > 0" class="discount-list mt-4 mx-auto">
+  <div class="text-center text-xl mb-4">Current Discounts</div>
+
+  <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+    <table class="w-full text-left table-auto min-w-max text-slate-800">
+      <thead>
+        <tr class="text-slate-500 border-b border-slate-300 bg-slate-50">
+          <th class="p-4">
+            <p class="text-sm leading-none font-normal">
+              Discount Amount
+            </p>
+          </th>
+          <th class="p-4">
+            <p class="text-sm leading-none font-normal">
+              Start Date
+            </p>
+          </th>
+          <th class="p-4">
+            <p class="text-sm leading-none font-normal">
+              End Date
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-slate-50" *ngFor="let discount of product.discounts">
+          <td class="p-4">
+            <p class="text-sm font-bold">
+              {{ discount.discount_amount }} %
+            </p>
+          </td>
+          <td class="p-4">
+            <p class="text-sm font-bold">
+              {{ discount.start_date | date:'yyyy-MM-dd' }}
+            </p>
+          </td>
+          <td class="p-4">
+            <p class="text-sm font-bold">
+              {{ discount.end_date | date:'yyyy-MM-dd' }}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<h2>Add Coupon</h2>
+
+<form (ngSubmit)="onSubmit()" #couponForm="ngForm">
+  <div>
+    <label for="code">Coupon Code:</label>
+    <input type="text" id="code" required [(ngModel)]="coupon.code" name="code" #code="ngModel">
+    <div *ngIf="code.invalid && (code.dirty || code.touched)" class="error">
+      Coupon code is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="discount_type">Discount Type:</label>
+    <select id="discount_type" required [(ngModel)]="coupon.discount_type" name="discount_type" #discountType="ngModel">
+      <option value="percentage">Percent</option>
+      <option value="fixed">Amount</option>
+    </select>
+    <div *ngIf="discountType.invalid && (discountType.dirty || discountType.touched)" class="error">
+      Discount type is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="discount_value">Discount Value:</label>
+    <input type="number" id="discount_value" required [(ngModel)]="coupon.discount_value" name="discount_value" #discountValue="ngModel">
+    <div *ngIf="discountValue.invalid && (discountValue.dirty || discountValue.touched)" class="error">
+      Discount value is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" required [(ngModel)]="coupon.start_date" name="start_date" #startDate="ngModel">
+    <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="error">
+      Start date is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" required [(ngModel)]="coupon.end_date" name="end_date" #endDate="ngModel">
+    <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="error">
+      End date is required and must be after start date.
+    </div>
+  </div>
+
+  <div>
+    <label for="usage_limit">Usage Limit:</label>
+    <input type="number" id="usage_limit" required [(ngModel)]="coupon.usage_limit" name="usage_limit" #usageLimit="ngModel">
+    <div *ngIf="usageLimit.invalid && (usageLimit.dirty || usageLimit.touched)" class="error">
+      Usage limit is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="couponForm.form.invalid">Add Coupon</button>
+</form>

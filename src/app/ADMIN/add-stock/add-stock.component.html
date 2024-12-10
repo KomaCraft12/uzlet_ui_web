@@ -1,0 +1,33 @@
+<h2 class="text-center text-2xl mb-8">Add Stock</h2>
+
+<div *ngIf="product" class="product-details">
+  <div class="text-center text-xl">Product Details</div>
+  <p><strong>Name:</strong> {{ product.name }}</p>
+  <p><strong>Barcode:</strong> {{ product.barcode }}</p>
+  <p><strong>Price:</strong> {{ product.price | number }} HUF</p>
+  <p><strong>Category:</strong> {{ product.category.name }}</p>
+  <p><strong>Current Stock:</strong> {{ product.stock }}</p>
+</div>
+
+<div *ngIf="barcode && !product" class="product-details">
+  <div class="text-center text-xl">Nincs ilyen termék</div>
+</div>
+
+<form (ngSubmit)="onSubmit()" #stockForm="ngForm">
+  <div>
+    <input type="number" id="product_id" required [(ngModel)]="stock.product_id" name="product_id" #product_id="ngModel" hidden>
+    <div *ngIf="product_id.invalid && (product_id.dirty || product_id.touched)" class="error">
+      Product ID is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" required [(ngModel)]="stock.quantity" name="quantity" #quantity="ngModel">
+    <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="error">
+      Quantity is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="stockForm.form.invalid">Add Stock</button>
+</form>

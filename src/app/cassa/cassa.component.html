@@ -1,0 +1,48 @@
+<div class="cash-register mt-10">
+
+  <div class="text-center text-4xl my-4">Kassza</div>
+
+  <div *ngIf="products.length === 0" class="mt-2">
+    <p>Nincs beolvasott termék.</p>
+  </div>
+
+  <div *ngIf="products.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Termék</th>
+          <th>Mennyiség</th>
+          <th>Egyégár</th>
+          <th>Ár</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td><input type="number" [(ngModel)]="product.incart" (ngModelChange)="changeQuantity(product)"></td>
+          <td [ngClass]="{ 'flex flex-col': product.isdiscounted }">
+            <span *ngIf="product.isdiscounted" class="line-through decoration-red-500">{{ product.price | number }}
+              HUF</span>
+            <span [ngClass]="{ 'text-green-500' : product.isdiscounted }">{{ product.isdiscounted ?
+              product.discounted.price : product.price | number }} HUF</span>
+          </td>
+          <td>{{ (product.isdiscounted ? product.discounted.price : product.price) * product.incart | number }} HUF</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="coupon" class="text-lg text-left font-mono mt-2 p-2 border border-gray-400">
+      Kupon: {{ coupon.code }} - 
+      <span>{{ coupon.discount_type === 'percentage' ? coupon.discount_value + '%' : coupon.discount_value + ' HUF' }}</span>
+      <span> ( {{ totalWithoutDiscount - total | number }} HUF )</span>
+    </div>
+    <div class="text-lg text-left font-mono mt-2 p-2 border border-gray-400">
+      Végösszeg: {{ total | number }} HUF
+    </div>
+  </div>
+
+  <div class="mt-2 flex gap-2">
+    <button class="bg-red-600 px-4 py-2 rounded text-white w-1/4" (click)="clearCart()">Mégse</button>
+    <button class="bg-orange-600 px-4 py-2 rounded text-white w-1/4" (click)="clearCart()">Storno</button>
+    <button class="bg-green-600 px-4 py-2 rounded text-white w-1/2" (click)="checkout()">Fizetés</button>
+  </div>
+</div>

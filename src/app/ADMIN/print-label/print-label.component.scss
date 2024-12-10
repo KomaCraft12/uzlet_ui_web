@@ -1,0 +1,104 @@
+.product-details {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    max-width: 500px;
+    margin: 0 auto 20px auto; // Középre igazítás és alsó margó
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+button:disabled {
+    background-color: #cccccc;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+// LABEL
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 10;
+    padding: 0;
+}
+
+/* Nyomtatásra optimalizált stílusok */
+.label {
+    width: 400px;
+    /*background-color: #FFCC00;*/
+    background-color: white;
+    border: 1px solid #000;
+    margin: auto;
+}
+
+.label2 {
+    width: 400px;
+    /*background-color: #FFCC00;*/
+    background-color: rgb(194, 194, 37);
+    border: 1px solid #000;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    padding: 0;
+}
+
+td {
+    padding: 5px;
+    vertical-align: top;
+}
+
+.large-price {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+}
+
+.small-price {
+    font-size: 14px;
+    color: #000;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.product-description {
+    font-size: 12px;
+    color: #000;
+}
+
+.barcode {
+    text-align: center;
+}
+
+.barcode img {
+    width: 100%;
+    height: auto;
+}
+
+.rotate {
+    rotate: -90deg;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 6%;
+    left: 3%;
+    transform: translate(-55%, -40%);
+}

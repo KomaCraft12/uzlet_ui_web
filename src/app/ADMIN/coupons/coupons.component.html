@@ -1,0 +1,29 @@
+<h2>Coupons</h2>
+
+<div *ngIf="coupons.length > 0; else noCoupons">
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Discount Type</th>
+                <th>Discount Value</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Usage Limit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let coupon of coupons">
+                <td>{{ coupon.code }}</td>
+                <td>{{ coupon.discount_type }}</td>
+                <td>{{ coupon.discount_value }}</td>
+                <td>{{ coupon.start_date | date }}</td>
+                <td>{{ coupon.end_date | date }}</td>
+                <td>{{ coupon.usage_limit }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #noCoupons>
+    <p>No coupons available.</p>
+</ng-template>

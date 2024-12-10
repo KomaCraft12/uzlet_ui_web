@@ -1,0 +1,61 @@
+<h2 class="text-center text-2xl mb-8">Add Product</h2>
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <div>
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" required [(ngModel)]="product.name" name="name" #name="ngModel">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+      Product name is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="barcode">Barcode:</label>
+    <input type="text" id="barcode" required [(ngModel)]="product.barcode" name="barcode" #barcode="ngModel">
+    <div *ngIf="barcode.invalid && (barcode.dirty || barcode.touched)" class="error">
+      Barcode is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input type="number" id="price" required [(ngModel)]="product.price" name="price" #price="ngModel">
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error">
+      Price is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Unit:</label>
+    <!--<input type="text" id="unit" required [(ngModel)]="product.unit" name="unit" #unit="ngModel">-->
+    <select id="unit" required [(ngModel)]="product.unit" name="unit" #unit="ngModel">
+      <option value="kg">kg</option>
+      <option value="g">g</option>
+      <option value="l">l</option>
+      <option value="ml">ml</option>
+      <option value="db">db</option>
+    </select>
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error">
+      Price is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="price">Quantity:</label>
+    <input type="number" id="quantity" required [(ngModel)]="product.quantity" name="quantity" #quntity="ngModel">
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error">
+      Price is required.
+    </div>
+  </div>
+
+  <div>
+    <label for="category">Category:</label>
+    <select id="category" required [(ngModel)]="product.category_id" name="category_id" #category="ngModel">
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+    <div *ngIf="category.invalid && (category.dirty || category.touched)" class="error">
+      Category is required.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="productForm.form.invalid">Add Product</button>
+</form>
